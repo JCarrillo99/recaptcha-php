@@ -6,8 +6,8 @@ use Dotenv\Dotenv;
 
 class Recaptcha {
 
-    private array $secrets;
-    private Client $client;
+    private $secrets;
+    private $client;
 
     public function __construct() {
         $this->client = new Client();
@@ -32,7 +32,7 @@ class Recaptcha {
      * @param string|null $remoteIp IP del usuario (opcional)
      * @return bool|array Retorna true si es exitoso (v2) o array completo (v3)
      */
-    public function verify(string $token, string $version = 'v2_checkbox', ?string $remoteIp = null) {
+    public function verify($token, $version = 'v2_checkbox', $remoteIp = null) {
         if (!isset($this->secrets[$version])) {
             throw new \Exception("Versión de reCAPTCHA inválida");
         }
